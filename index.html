@@ -818,7 +818,7 @@
             <div class="brand-subtitle">QR mobile experience</div>
           </div>
         </div>
-        <div class="step-pill" id="stepPill">Step 1 / 5</div>
+        <div class="step-pill" id="stepPill">Step 1 / 6</div>
       </header>
 
       <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
@@ -960,30 +960,57 @@
     let selectedKeywords = [];
     let effectTimer = null;
     let saved = false;
+    let currentAudio = null;
+
+    function startMusic(music) {
+      stopMusic();
+
+      if (!music || !music.audioUrl) return;
+
+      currentAudio = new Audio(music.audioUrl);
+      currentAudio.loop = true;
+      currentAudio.volume = 0.45;
+
+      currentAudio.play().catch(error => {
+        console.log('Audio playback failed:', error);
+      });
+    }
+
+    function stopMusic() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+    }
 
     const musicOptions = [
       {
         id: 'childhood', icon: '🏡', name: 'Childhood Song',
         desc: 'Home, school, family, early memories.',
         color: '#f6d08d', prompt: 'What place or person from childhood comes back through this song?',
+        audioUrl: 'childhood.mp3',
         keywords: ['Home', 'Mother', 'Father', 'School', 'Kitchen', 'Old street', 'First song', 'Summer']
       },
       {
         id: 'love', icon: '💛', name: 'Love Song',
         desc: 'Partner, dance, first meetings, warm evenings.',
         color: '#f2a0b8', prompt: 'Who does this song make you think of?',
+        audioUrl: 'love.mp3',
         keywords: ['Husband', 'Wife', 'Dancing', 'First date', 'Warm light', 'Wedding', 'Young days', 'Holding hands']
       },
       {
         id: 'festival', icon: '✨', name: 'Festival Song',
         desc: 'Celebration, meals, family gatherings.',
         color: '#ffc36b', prompt: 'What family celebration or gathering does this music recall?',
+        audioUrl: 'festival.mp3',
         keywords: ['Family', 'Dinner table', 'Festival', 'Laughter', 'Lanterns', 'Reunion', 'Cooking', 'Children']
       },
       {
         id: 'local', icon: '🌊', name: 'Local Sound',
         desc: 'Lake, park, walking path, public memory.',
         color: '#89c9ff', prompt: 'What local place does this sound bring back?',
+        audioUrl: 'local.mp3',
         keywords: ['Lake', 'Park', 'Wind', 'Walking path', 'Bench', 'Boat', 'Trees', 'Morning']
       }
     ];
@@ -1058,6 +1085,10 @@
     }
 
     function showScreen(name) {
+      // Music should only be audible on the dedicated listening page.
+      // Any time the app leaves that page, stop the current track.
+      if (name !== 'playing') stopMusic();
+
       screens.forEach(screen => screen.classList.toggle('active', screen.dataset.screen === name));
       index = flow.indexOf(name);
       progressFill.style.width = `${((index + 1) / flow.length) * 100}%`;
@@ -1112,7 +1143,17 @@
     function back() {
       const current = flow[index];
       if (current === 'card') return resetAll();
-      if (index > 0) showScreen(flow[index - 1]);
+      if (index > 0) {
+        const target = flow[index - 1];
+
+        // If users go back to the listening page, restart the selected track.
+        if (target === 'playing') {
+          renderPlaying();
+          return showScreen('playing');
+        }
+
+        showScreen(target);
+      }
     }
 
     function renderPlaying() {
@@ -1124,6 +1165,8 @@
       playingPrompt.textContent = music.prompt;
       playingStage.style.borderColor = `${music.color}66`;
       playingStage.style.boxShadow = `0 24px 80px ${hexToRgba(music.color, 0.14)}`;
+
+      startMusic(music);
     }
 
     function startEffect() {
@@ -1140,6 +1183,8 @@
     }
 
     function buildCard() {
+      stopMusic();
+
       const music = selectedMusic || musicOptions[0];
       const keywordTone = getKeywordTone(selectedKeywords);
       const first = selectedKeywords[0] || 'Memory';
@@ -1207,6 +1252,8 @@
     }
 
     function resetAll() {
+      stopMusic();
+
       selectedMusic = null;
       selectedKeywords = [];
       saved = false;
