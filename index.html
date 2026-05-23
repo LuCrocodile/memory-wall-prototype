@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Memory Ribbon Mobile Prototype</title>
+  <title>Memory Wall Mobile Prototype</title>
   <style>
     :root {
       --bg-1: #07101b;
@@ -378,108 +378,6 @@
     .music-name { font-weight: 740; letter-spacing: -0.02em; font-size: 17px; }
     .music-desc { color: var(--muted); font-size: 13px; margin-top: 5px; line-height: 1.35; }
 
-
-    .light-cue-stage {
-      min-height: calc(100dvh - 220px);
-      border-radius: var(--radius-xl);
-      padding: 28px 22px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background:
-        radial-gradient(circle at 50% 26%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 36%),
-        radial-gradient(circle at 50% 76%, rgba(255,255,255,0.08), transparent 45%),
-        rgba(255,255,255,0.06);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .light-strip-preview {
-      position: absolute;
-      top: 28px;
-      left: 18px;
-      right: 18px;
-      height: 34px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      overflow: hidden;
-      box-shadow: inset 0 0 24px rgba(255,255,255,0.08);
-    }
-
-    .light-dot {
-      position: absolute;
-      top: 50%;
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      transform: translate(-50%, -50%);
-      background: var(--accent);
-      box-shadow: 0 0 22px var(--accent), 0 0 42px color-mix(in srgb, var(--accent) 70%, transparent);
-      animation: lightTravel 3.4s linear infinite;
-    }
-
-    .light-dot:nth-child(1) { animation-delay: 0s; }
-    .light-dot:nth-child(2) { animation-delay: 0.42s; }
-    .light-dot:nth-child(3) { animation-delay: 0.84s; }
-
-    @keyframes lightTravel {
-      0% { left: -8%; opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-      16% { opacity: 1; }
-      84% { opacity: 1; }
-      100% { left: 108%; opacity: 0; transform: translate(-50%, -50%) scale(1.12); }
-    }
-
-    .cue-icon {
-      position: relative;
-      z-index: 2;
-      width: 108px;
-      height: 108px;
-      border-radius: 32px;
-      display: grid;
-      place-items: center;
-      color: #07101b;
-      background: linear-gradient(135deg, var(--accent), rgba(255,255,255,0.88));
-      box-shadow: 0 0 62px color-mix(in srgb, var(--accent) 42%, transparent);
-      font-size: 42px;
-      animation: breathe 3.6s ease-in-out infinite;
-    }
-
-    .light-cue-stage h2 {
-      position: relative;
-      z-index: 2;
-      margin-top: 22px;
-      font-size: clamp(34px, 10vw, 48px);
-      line-height: 0.95;
-      letter-spacing: -0.065em;
-    }
-
-    .light-cue-stage p {
-      position: relative;
-      z-index: 2;
-      margin-top: 12px;
-      max-width: 300px;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .cue-note {
-      position: relative;
-      z-index: 2;
-      margin-top: 24px;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 22px;
-      padding: 15px;
-      color: rgba(255,255,255,0.82);
-      background: rgba(0,0,0,0.16);
-      line-height: 1.42;
-      font-size: 14px;
-    }
-
     .playing-stage {
       min-height: calc(100dvh - 220px);
       border-radius: var(--radius-xl);
@@ -586,63 +484,6 @@
     @keyframes barBeat {
       0%, 100% { height: 18px; }
       50% { height: 62px; }
-    }
-
-
-    .shake-hint {
-      position: relative;
-      z-index: 2;
-      margin-top: 20px;
-      width: min(100%, 360px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 26px;
-      padding: 20px 18px;
-      color: rgba(255,255,255,0.9);
-      background: rgba(255,255,255,0.10);
-      box-shadow: 0 18px 42px rgba(0,0,0,0.18);
-      line-height: 1.35;
-      font-size: 16px;
-    }
-
-    .shake-hint strong {
-      display: block;
-      color: #fff;
-      margin-bottom: 6px;
-      font-size: 26px;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .shake-hint span {
-      display: block;
-      font-size: 16px;
-      color: rgba(255,255,255,0.84);
-      margin-top: 3px;
-    }
-
-    .shake-phone {
-      width: 72px;
-      height: 72px;
-      flex: 0 0 auto;
-      border-radius: 24px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.14);
-      font-size: 40px;
-      animation: phoneShake 1.6s ease-in-out infinite;
-    }
-
-    @keyframes phoneShake {
-      0%, 100% { transform: rotate(0deg) translateX(0); }
-      20% { transform: rotate(-7deg) translateX(-2px); }
-      40% { transform: rotate(7deg) translateX(2px); }
-      60% { transform: rotate(-5deg) translateX(-1px); }
-      80% { transform: rotate(4deg) translateX(1px); }
     }
 
     .listening-prompt {
@@ -973,11 +814,11 @@
         <div class="brand">
           <div class="brand-icon">♪</div>
           <div>
-            <div class="brand-title">Memory Ribbon</div>
+            <div class="brand-title">Memory Wall</div>
             <div class="brand-subtitle">QR mobile experience</div>
           </div>
         </div>
-        <div class="step-pill" id="stepPill">Step 1 / 7</div>
+        <div class="step-pill" id="stepPill">Step 1 / 6</div>
       </header>
 
       <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
@@ -986,85 +827,61 @@
         <div class="screen active" data-screen="intro">
           <div class="hero-card">
             <div class="eyebrow">Scanned from the Cube installation</div>
-            <h1>Let music hold memory.</h1>
+            <h1>Let music hold a small memory.</h1>
             <p class="large-copy">
-              Pick music. Look up. Shake with the song. Save a memory.
+              This mobile page appears after scanning the QR code. Choose a music category, select a few memory keywords, then watch your story become a digital memory card.
             </p>
             <div class="mini-flow">
-              <div class="flow-row"><span class="flow-dot">1</span><span>Choose music</span></div>
-              <div class="flow-row"><span class="flow-dot">2</span><span>Watch lights</span></div>
-              <div class="flow-row"><span class="flow-dot">3</span><span>Shake with music</span></div>
-              <div class="flow-row"><span class="flow-dot">4</span><span>Pick memory words</span></div>
-              <div class="flow-row"><span class="flow-dot">5</span><span>See memory light</span></div>
-              <div class="flow-row"><span class="flow-dot">6</span><span>Save your card</span></div>
+              <div class="flow-row"><span class="flow-dot">1</span><span>Choose a music category</span></div>
+              <div class="flow-row"><span class="flow-dot">2</span><span>Listen to the selected music category</span></div>
+              <div class="flow-row"><span class="flow-dot">3</span><span>Select keywords that match the memory</span></div>
+              <div class="flow-row"><span class="flow-dot">4</span><span>Generate a visual memory effect</span></div>
+              <div class="flow-row"><span class="flow-dot">5</span><span>Save the digital memory card</span></div>
             </div>
           </div>
         </div>
 
         <div class="screen" data-screen="music">
           <div class="section-title">
-            <h2>Choose music.</h2>
-            <p>Pick one to begin.</p>
+            <h2>Choose a music category.</h2>
+            <p>The category acts as a gentle memory trigger. In the real Cube, this would also control the projection mood and soundscape.</p>
           </div>
           <div class="music-grid" id="musicGrid"></div>
         </div>
 
-        <div class="screen" data-screen="light-cue">
-          <div class="section-title">
-            <h2>Look up.</h2>
-            <p>The lights have changed.</p>
-          </div>
-          <div class="light-cue-stage" id="lightCueStage">
-            <div class="light-strip-preview" aria-hidden="true">
-              <div class="light-dot"></div>
-              <div class="light-dot"></div>
-              <div class="light-dot"></div>
-            </div>
-            <div class="cue-icon" id="lightCueIcon">✨</div>
-            <div class="now-playing">Light cue</div>
-            <h2 id="lightCueTitle">Watch the lights.</h2>
-            <p id="lightCueDesc">Your music is now in the lights.</p>
-            <div class="cue-note"><strong>Look up.</strong> Watch the light move.</div>
-          </div>
-        </div>
-
         <div class="screen" data-screen="playing">
           <div class="section-title">
-            <h2>Listen.</h2>
-            <p>Listen and move with the music.</p>
+            <h2>Music is playing.</h2>
+            <p>Take a quiet moment before choosing keywords. The sound category begins to shape the colour, rhythm, and mood of the memory.</p>
           </div>
           <div class="playing-stage" id="playingStage">
             <div class="album-orb" id="playingIcon">♪</div>
             <div class="now-playing">Now playing</div>
             <h2 id="playingName">Childhood Song</h2>
-            <p id="playingDesc">Home and childhood.</p>
+            <p id="playingDesc">Home, school, family, early memories.</p>
             <div class="music-bars" aria-hidden="true">
               <span></span><span></span><span></span><span></span><span></span>
               <span></span><span></span><span></span><span></span><span></span>
             </div>
-            <div class="shake-hint" id="shakeHint">
-              <div class="shake-phone">📱</div>
-              <div><strong>Shake your phone</strong><span>Look up at the lights</span><span>Move with the music</span></div>
-            </div>
-            <div class="listening-prompt" id="playingPrompt">What does this song remind you of?</div>
+            <div class="listening-prompt" id="playingPrompt">What place or person from childhood comes back through this song?</div>
           </div>
         </div>
 
         <div class="screen" data-screen="keywords">
           <div class="section-title">
-            <h2>Pick memory words.</h2>
-            <p>Choose 2 or more words.</p>
+            <h2>What did the song bring back?</h2>
+            <p>Choose a few keywords. These fragments will become the projection effect and the final digital card.</p>
           </div>
           <div class="prompt-card">
-            <div class="prompt" id="memoryPrompt">What does this song bring back?</div>
-            <div class="hint-text">Tap a few words.</div>
+            <div class="prompt" id="memoryPrompt">Who, where, or what does this song remind you of?</div>
+            <div class="hint-text">This step replaces a long form. It helps older adults express small memories without pressure.</div>
           </div>
           <div class="keyword-grid" id="keywordGrid"></div>
           <div class="custom-row">
-            <input id="customKeyword" maxlength="18" placeholder="Your word" />
+            <input id="customKeyword" maxlength="18" placeholder="Add your own keyword" />
             <button class="small-button" id="addKeywordBtn">Add</button>
           </div>
-          <div class="selected-box" id="selectedBox">Pick 2 words to continue.</div>
+          <div class="selected-box" id="selectedBox">Select at least 2 keywords to continue.</div>
         </div>
 
         <div class="screen" data-screen="effect">
@@ -1076,18 +893,18 @@
             <div class="floating-word" id="fxWord2">Music</div>
             <div class="floating-word" id="fxWord3">Story</div>
             <div class="floating-word" id="fxWord4">Light</div>
-            <h2>Your memory is forming.</h2>
-            <p>Light and words come together.</p>
+            <h2>Your fragments are becoming a memory.</h2>
+            <p>The Cube projection would now show soft waves, floating words, and image fragments based on the chosen music and keywords.</p>
           </div>
         </div>
 
         <div class="screen" data-screen="card">
           <div class="section-title">
-            <h2>Your memory card.</h2>
-            <p>Save this card.</p>
+            <h2>Your digital memory card.</h2>
+            <p>This card can be saved by the family or added to the community memory archive.</p>
           </div>
           <article class="card-preview" id="cardPreview">
-            <div class="card-tag">Saved from the Cube</div>
+            <div class="card-tag">Memory saved from the Cube</div>
             <h2 id="cardTitle">A song from home</h2>
             <p class="memory-quote" id="cardQuote">“A small story held through music, light, and shared memory.”</p>
             <div class="memory-meta">
@@ -1096,7 +913,7 @@
               <div class="meta-row"><span>Date</span><span id="cardDate">Today</span></div>
             </div>
             <div class="mini-qr">
-              <div class="save-status" id="saveStatus">Ready to save.</div>
+              <div class="save-status" id="saveStatus">Ready to save. In the final system, this QR would reopen the memory card later.</div>
               <div class="qr" id="miniQr"></div>
             </div>
           </article>
@@ -1128,10 +945,6 @@
     const playingName = document.getElementById('playingName');
     const playingDesc = document.getElementById('playingDesc');
     const playingPrompt = document.getElementById('playingPrompt');
-    const lightCueStage = document.getElementById('lightCueStage');
-    const lightCueIcon = document.getElementById('lightCueIcon');
-    const lightCueTitle = document.getElementById('lightCueTitle');
-    const lightCueDesc = document.getElementById('lightCueDesc');
     const cardPreview = document.getElementById('cardPreview');
     const cardTitle = document.getElementById('cardTitle');
     const cardQuote = document.getElementById('cardQuote');
@@ -1141,7 +954,7 @@
     const saveStatus = document.getElementById('saveStatus');
     const miniQr = document.getElementById('miniQr');
 
-    const flow = ['intro', 'music', 'light-cue', 'playing', 'keywords', 'effect', 'card'];
+    const flow = ['intro', 'music', 'playing', 'keywords', 'effect', 'card'];
     let index = 0;
     let selectedMusic = null;
     let selectedKeywords = [];
@@ -1174,29 +987,29 @@
     const musicOptions = [
       {
         id: 'childhood', icon: '🏡', name: 'Childhood Song',
-        desc: 'Home and childhood.',
-        color: '#f6d08d', prompt: 'What does this song remind you of?',
+        desc: 'Home, school, family, early memories.',
+        color: '#f6d08d', prompt: 'What place or person from childhood comes back through this song?',
         audioUrl: 'childhood.mp3',
         keywords: ['Home', 'Mother', 'Father', 'School', 'Kitchen', 'Old street', 'First song', 'Summer']
       },
       {
         id: 'love', icon: '💛', name: 'Love Song',
-        desc: 'Love and warm moments.',
-        color: '#f2a0b8', prompt: 'Who comes to mind?',
+        desc: 'Partner, dance, first meetings, warm evenings.',
+        color: '#f2a0b8', prompt: 'Who does this song make you think of?',
         audioUrl: 'love.mp3',
         keywords: ['Husband', 'Wife', 'Dancing', 'First date', 'Warm light', 'Wedding', 'Young days', 'Holding hands']
       },
       {
         id: 'festival', icon: '✨', name: 'Festival Song',
-        desc: 'Family and celebration.',
-        color: '#ffc36b', prompt: 'Which celebration do you remember?',
+        desc: 'Celebration, meals, family gatherings.',
+        color: '#ffc36b', prompt: 'What family celebration or gathering does this music recall?',
         audioUrl: 'festival.mp3',
         keywords: ['Family', 'Dinner table', 'Festival', 'Laughter', 'Lanterns', 'Reunion', 'Cooking', 'Children']
       },
       {
         id: 'local', icon: '🌊', name: 'Local Sound',
-        desc: 'Lake and local places.',
-        color: '#89c9ff', prompt: 'Which place do you remember?',
+        desc: 'Lake, park, walking path, public memory.',
+        color: '#89c9ff', prompt: 'What local place does this sound bring back?',
         audioUrl: 'local.mp3',
         keywords: ['Lake', 'Park', 'Wind', 'Walking path', 'Bench', 'Boat', 'Trees', 'Morning']
       }
@@ -1265,10 +1078,10 @@
 
     function updateSelectedBox() {
       if (!selectedKeywords.length) {
-        selectedBox.textContent = 'Pick 2 words to continue.';
+        selectedBox.textContent = 'Select at least 2 keywords to continue.';
         return;
       }
-      selectedBox.textContent = `Selected: ${selectedKeywords.join(', ')}`;
+      selectedBox.textContent = `Selected fragments: ${selectedKeywords.join(', ')}`;
     }
 
     function showScreen(name) {
@@ -1289,29 +1102,25 @@
       secondaryBtn.classList.toggle('hidden', current === 'intro');
       primaryBtn.disabled = false;
 
-      if (current === 'intro') primaryBtn.textContent = 'Start';
+      if (current === 'intro') primaryBtn.textContent = 'Begin after scanning QR';
       if (current === 'music') {
-        primaryBtn.textContent = 'Next';
+        primaryBtn.textContent = 'Continue to music';
         primaryBtn.disabled = !selectedMusic;
       }
-      if (current === 'light-cue') {
-        primaryBtn.textContent = 'Listen';
-        primaryBtn.disabled = false;
-      }
       if (current === 'playing') {
-        primaryBtn.textContent = 'Next';
+        primaryBtn.textContent = 'Choose memory keywords';
         primaryBtn.disabled = false;
       }
       if (current === 'keywords') {
-        primaryBtn.textContent = 'Create';
+        primaryBtn.textContent = 'Generate visual memory';
         primaryBtn.disabled = selectedKeywords.length < 2;
       }
       if (current === 'effect') {
-        primaryBtn.textContent = 'Creating…';
+        primaryBtn.textContent = 'Creating card…';
         primaryBtn.disabled = true;
       }
       if (current === 'card') {
-        primaryBtn.textContent = saved ? 'Saved ✓' : 'Save';
+        primaryBtn.textContent = saved ? 'Saved ✓' : 'Save digital card';
         primaryBtn.disabled = saved;
         secondaryBtn.textContent = 'New memory';
       } else {
@@ -1323,10 +1132,6 @@
       const current = flow[index];
       if (current === 'intro') return showScreen('music');
       if (current === 'music') {
-        renderLightCue();
-        return showScreen('light-cue');
-      }
-      if (current === 'light-cue') {
         renderPlaying();
         return showScreen('playing');
       }
@@ -1347,23 +1152,8 @@
           return showScreen('playing');
         }
 
-        if (target === 'light-cue') {
-          renderLightCue();
-          return showScreen('light-cue');
-        }
-
         showScreen(target);
       }
-    }
-
-    function renderLightCue() {
-      const music = selectedMusic || musicOptions[0];
-      document.documentElement.style.setProperty('--accent', music.color);
-      lightCueIcon.textContent = music.icon;
-      lightCueTitle.textContent = `${music.name} is now in the lights.`;
-      lightCueDesc.textContent = `Your ${music.name.toLowerCase()} is now in the lights.`;
-      lightCueStage.style.borderColor = `${music.color}66`;
-      lightCueStage.style.boxShadow = `0 24px 80px ${hexToRgba(music.color, 0.14)}`;
     }
 
     function renderPlaying() {
@@ -1405,8 +1195,8 @@
         festival: `A gathering with ${first.toLowerCase()}`,
         local: `A sound near the ${first.toLowerCase()}`
       };
-      cardTitle.textContent = titleMap[music.id] || 'A memory';
-      cardQuote.textContent = `“${selectedKeywords.slice(0, 3).join(', ')}.”`;
+      cardTitle.textContent = titleMap[music.id] || 'A small memory';
+      cardQuote.textContent = `“This ${music.name.toLowerCase()} brought back ${selectedKeywords.slice(0, 3).join(', ').toLowerCase()} — a small fragment saved before it fades.”`;
       cardMusic.textContent = music.name;
       cardKeywords.textContent = selectedKeywords.join(', ');
       cardDate.textContent = new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
@@ -1420,7 +1210,7 @@
       cardPreview.style.boxShadow = `0 24px 78px ${hexToRgba(music.color, 0.18)}`;
       cardTitle.style.color = '#fff';
       cardTitle.style.textShadow = `0 0 30px ${hexToRgba(keywordTone, 0.34)}`;
-      saveStatus.textContent = 'Ready to save.';
+      saveStatus.textContent = 'Ready to save. In the final system, this QR would reopen the memory card later.';
       saved = false;
       buildQrPattern();
     }
@@ -1457,7 +1247,7 @@
 
     function saveCard() {
       saved = true;
-      saveStatus.textContent = 'Saved to memory archive.';
+      saveStatus.textContent = 'Saved to personal memory archive. The family can revisit this digital card later.';
       updateButtons();
     }
 
